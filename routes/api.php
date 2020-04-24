@@ -22,7 +22,7 @@ Route::prefix('v1')->group(function(){
 	Route::apiResource('/accounts','Api\v1\AccountController')->only(['index']);
 	Route::apiResource('/product','Api\v1\ProductController')->only(['show','destroy','update','store']);
 	Route::apiResource('/products','Api\v1\ProductController')->only(['index']);
-	Route::apiResource('/accountImage','accountImageController');
+	Route::apiResource('/accountImage','Api\v1\accountImageController');
 });
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'Api\v1\AuthController@login');
