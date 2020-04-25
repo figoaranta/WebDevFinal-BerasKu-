@@ -4,13 +4,20 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\accountImage;
 use App\Http\Resources\accountImageResource;
+use App\Http\Resources\accountImageResourceCollection;
 use Illuminate\Http\Request;
 
 class accountImageController extends Controller
 {
-    public function show(AccountImage $accountImage)
+    public function index():accountImageResourceCollection
     {
-    	return response()->download(public_path('/sources/images/'.$accountImage->profilePic), $accountImage->profilePic);
+        return new accountImageResourceCollection(accountImage::paginate());
+    }
+
+    public function show(AccountImage $accountImage):accountImageResource
+    {
+        return new accountImageResource($accountImage);
+    	// return response()->file((public_path('/sources/images/'.$accountImage->profilePic)));
     }
 
     public function store(Request $request){

@@ -21,7 +21,7 @@ integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="ano
 
 <body>
 
-                    <h2 class="title">BERASKU Registration Form</h2>
+                    <h2 class="title">Add Account Image</h2>
                     <form action = "{{route('addimage')}}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                                     <input type="text" name="userId">
