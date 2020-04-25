@@ -71,26 +71,3 @@ class AccountImageCRUDController extends Controller
         return redirect('accountImageCRUD/accountImagepage')->with('accountImage',$accountImage);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

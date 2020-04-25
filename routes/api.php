@@ -23,7 +23,11 @@ Route::prefix('v1')->group(function(){
 	Route::apiResource('/product','Api\v1\ProductController')->only(['show','destroy','update','store']);
 	Route::apiResource('/products','Api\v1\ProductController')->only(['index']);
 	Route::apiResource('/accountImage','Api\v1\accountImageController');
+	Route::apiResource('/productImages','Api\v1\productImageController')->only(['index']);
+	Route::apiResource('/productImage','Api\v1\productImageController')->only(['show','destroy','update','store']);
+
 });
+
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'Api\v1\AuthController@login');
     Route::post('logout', 'Api\v1\AuthController@logout');
@@ -32,5 +36,4 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('payload', 'Api\v1\AuthController@payload');
 });
 
-// 171149
-// 170642
+
