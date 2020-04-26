@@ -12,11 +12,13 @@ class Account extends Authenticatable implements JWTSubject
     protected $fillable = [
         'firstName', 	
 		'lastName', 	
-		'userName', 		
+		'userName', 
+        'email',		
 		'NIM', 			
-		'dateOfBirth', 
-		'email', 		
-		'phoneNumber', 
+		'dateOfBirth',
+        'address', 		
+		'phoneNumber',
+        'userGenderType',
 		'password', 		
 		'userType', 		
     ];
