@@ -22,10 +22,12 @@ Route::prefix('v1')->group(function(){
 	Route::apiResource('/accounts','Api\v1\AccountController')->only(['index']);
 	Route::apiResource('/product','Api\v1\ProductController')->only(['show','destroy','update','store']);
 	Route::apiResource('/products','Api\v1\ProductController')->only(['index']);
-	Route::apiResource('/accountImage','Api\v1\accountImageController');
+	Route::apiResource('/accountImages','Api\v1\accountImageController')->only(['index']);
+	Route::apiResource('/accountImage','Api\v1\accountImageController')->only(['show','destroy','update','store']);
 	Route::apiResource('/productImages','Api\v1\productImageController')->only(['index']);
 	Route::apiResource('/productImage','Api\v1\productImageController')->only(['show','destroy','update','store']);
-
+	Route::apiResource('/posts','Api\v1\PostController')->only(['index']);
+	Route::apiResource('/post','Api\v1\PostController')->only(['show','destroy','update','store']);
 });
 
 Route::group(['prefix' => 'auth'], function () {
@@ -35,5 +37,4 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('me', 'Api\v1\AuthController@me');
     Route::post('payload', 'Api\v1\AuthController@payload');
 });
-
 
