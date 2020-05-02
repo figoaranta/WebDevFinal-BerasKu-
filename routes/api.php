@@ -27,6 +27,7 @@ Route::prefix('v1')->group(function(){
 	Route::apiResource('/productImages','Api\v1\productImageController')->only(['index']);
 	Route::apiResource('/productImage','Api\v1\productImageController')->only(['show','destroy','update','store']);
 	Route::apiResource('/posts','Api\v1\PostController')->only(['index']);
+	Route::get('/post/self','Api\v1\PostController@self');
 	Route::apiResource('/post','Api\v1\PostController')->only(['show','destroy','update','store']);
 });
 

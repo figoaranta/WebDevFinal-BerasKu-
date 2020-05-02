@@ -55,7 +55,10 @@ class AccountController extends Controller
     public function update(Account $account,Request $request):AccountResource
     {
 
-    	$account->update($request->all());
+    	$account->update($request->except(['password']));
+        $account->update([
+            'password'=>bcrypt($request->password)
+        ]);
 
     	return new AccountResource($account);
     }
