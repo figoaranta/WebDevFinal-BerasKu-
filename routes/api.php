@@ -29,6 +29,8 @@ Route::prefix('v1')->group(function(){
 	Route::apiResource('/posts','Api\v1\PostController')->only(['index']);
 	Route::get('/post/self','Api\v1\PostController@self');
 	Route::apiResource('/post','Api\v1\PostController')->only(['show','destroy','update','store']);
+	Route::apiResource('/comments','Api\v1\CommentController')->only(['index']);
+	Route::apiResource('/comment','Api\v1\CommentController')->only(['show','destroy','update','store']);
 });
 
 Route::group(['prefix' => 'auth'], function () {
@@ -38,4 +40,3 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('me', 'Api\v1\AuthController@me');
     Route::post('payload', 'Api\v1\AuthController@payload');
 });
-

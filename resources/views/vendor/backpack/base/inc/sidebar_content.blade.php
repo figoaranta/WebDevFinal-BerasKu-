@@ -4,3 +4,4 @@
 <li class='nav-item'><a class='nav-link' href="{{ backpack_url('account') }}"><i class="nav-icon fa fa-question"></i> Accounts</a></li>
 <li class='nav-item'><a class='nav-link' href="{{ backpack_url('product') }}"><i class='nav-icon fa fa-tag'></i> Products</a></li>
 <li class='nav-item'><a class='nav-link' href="{{ backpack_url('post') }}"><i class='nav-icon fa fa-question'></i> Posts</a></li>
+<li class='nav-item'><a class='nav-link' href="{{ backpack_url('comment') }}"><i class='nav-icon fa fa-question'></i> Comments</a></li>
