@@ -34,3 +34,6 @@ Route::prefix('/productImageCRUD')->group(function(){
 	Route::put('/editProductImage/updateProductImage/{id}','ProductImageCRUDController@update');
 	Route::get('deleteImage/{id}','ProductImageCRUDController@delete');
 });
+
+Route::get('/checkout','CheckoutController@index');
+Route::post('/checkout','CheckoutController@store')->name('checkout.store');
