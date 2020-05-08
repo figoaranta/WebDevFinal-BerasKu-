@@ -24,7 +24,7 @@
 	  transition: box-shadow 150ms ease;
 	}
 
-	.StripeElement--focus {
+{
 	  box-shadow: 0 1px 3px 0 #cfd7df;
 	}
 
@@ -43,27 +43,40 @@
 	<h2>Product : Macbook</h2>
 	<h2>Price : 500 USD</h2>
 
+	@if(session()->has('message'))
+        {{ session()->get('message') }}
+    @endif
+
+    @if(count($errors)>0)
+    	@foreach($errors->all() as $error)
+    		<li>{{$error}}</li>
+    	@endforeach
+	@endif
 
 	<h3>Payment Details</h3>
-	<form action="{{route('checkout.store')}}" method="POST" id="payment-form">
+	<!-- {{route('checkout.store')}} -->
+	<form action="checkout" method="POST" id="payment-form">
 		{{csrf_field()}}
 		<label>Name:</label>
-	    <input type="text" id="name" >
-
-		<label>Email Address:</label>
-    	<input type="text" id="email" >
+	    <input type="text" name="name" id="name" >
 
 	    <label>CardHolder Name:</label>
-	    <input type="text" id="card-name" >
+	    <input type="text" name="cardName" id="cardName" >
+
+		<label>Email Address:</label>
+    	<input type="text" name="email" >
 
 	    <label>Address:</label>
-	    <input type="text" id="address" >
+	    <input type="text" name="address" id="address" >
 
 	    <label>City:</label>
-	    <input type="text" id="city" >
+	    <input type="text" name="city" id="city" >
 
 	    <label>State:</label>
-	    <input type="text" id="state" >
+	    <input type="text" name="state" id="state" >
+
+	    <!-- <label>Phone:</label>
+	    <input type="text" name="phone" id="phone"> -->
 
 	    <div class="form-row">
 	    	<label for="card-element">Credit or debit card</label>
@@ -73,20 +86,6 @@
 
 	    <!-- Used to display form errors. -->
 	    <div id="card-errors" role="alert"></div>
-
-	     <!-- <label>Credit Card Number:</label>
-	     <input type="text" id="card-number">
-
-	     <label>Card Expiry Month:</label>
-	     <input type="text" id="card-expiry-month">
-
-	     <label>Card Expiry Year:</label>
-	     <input type="text" id="card-expiry-year">
-
-s
-	    <label>CVC:</label> -->
-	    <!-- <input type="text" id ="card-cvc"> -->
-		
 
 	    <button id="complete-order" type="submit">Complete Order</button>
 
@@ -140,12 +139,13 @@ s
 	  document.getElementById('complete-order').disable = true;
 
 	  var options = {
-        name: document.getElementById('card-name').value,
+        name: document.getElementById('name').value,
         address_line1: document.getElementById('address').value,
         address_city: document.getElementById('city').value,
         address_state: document.getElementById('state').value,
+        // phone: document.getElementById('phone').value
       }
-      console.log(options);
+
 	  stripe.createToken(card,options).then(function(result) {
 	    if (result.error) {
 	      // Inform the user if there was an error.

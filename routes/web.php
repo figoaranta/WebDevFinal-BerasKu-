@@ -35,5 +35,16 @@ Route::prefix('/productImageCRUD')->group(function(){
 	Route::get('deleteImage/{id}','ProductImageCRUDController@delete');
 });
 
-Route::get('/checkout','CheckoutController@index');
-Route::post('/checkout','CheckoutController@store')->name('checkout.store');
+Route::prefix('/testStripe')->group(function(){
+	Route::get('/checkout','CheckoutController@index');
+	Route::post('/checkout','CheckoutController@store')->name('checkout.store');
+});
+
+Route::prefix('/productPage')->group(function(){
+	Route::get('/products', 'Api\v1\ProductController@showProductPage');
+	Route::get('/productDelete/{id}', 'Api\v1\ProductController@deleteItem');
+	Route::get('/addProduct/{id}','Api\v1\ProductController@addToCart');
+	Route::get('/cart', 'Api\v1\ProductController@viewCart');
+	Route::get('/productDeleteAll/{id}','Api\v1\ProductController@deleteItemAll');
+});
+

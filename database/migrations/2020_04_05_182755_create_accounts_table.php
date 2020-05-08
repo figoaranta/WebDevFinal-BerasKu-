@@ -19,9 +19,9 @@ class CreateAccountsTable extends Migration
             $table->string('lastName');
             $table->string('userName');
             $table->string('email');
-            $table->bigInteger('NIM');
-            $table->string('dateOfBirth');
-            $table->string('address');
+            $table->bigInteger('NIM')->nullable();
+            $table->string('dateOfBirth')->nullable();
+            $table->string('address')->nullable();
             $table->bigInteger('phoneNumber');
             $table->string('userGenderType')->nullable()->index();
             $table->foreign('userGenderType')->references('genderType')->on('userGenderTypes');
