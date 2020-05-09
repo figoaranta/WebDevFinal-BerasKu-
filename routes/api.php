@@ -44,4 +44,5 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('payload', 'Api\v1\AuthController@payload');
 });
 
+Route::get('/account/wishlist/{id}','Api\v1\AccountController@showWishlist');
 

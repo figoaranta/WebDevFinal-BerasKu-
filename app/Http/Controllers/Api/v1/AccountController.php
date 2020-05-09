@@ -6,6 +6,7 @@ use App\Http\Resources\AccountResourceCollection;
 use App\Account;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Wishlist;
 
 class AccountController extends Controller
 {
@@ -85,5 +86,17 @@ class AccountController extends Controller
             'password' => bcrypt($password),
         ]);
         return $account;
+    }
+
+    public function showWishlist($accountId)
+    { 
+        $wishlists = Wishlist::where('accountId',$accountId)->get();
+        $accountWishlists = [];
+
+        foreach ($wishlists as $wishlist) {
+            array_push($accountWishlists, $wishlist);
+        }
+
+        return $accountWishlists;
     }
 }
