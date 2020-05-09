@@ -86,5 +86,4 @@ class AccountController extends Controller
         ]);
         return $account;
     }
-
 }

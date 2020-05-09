@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\v1;
+use App\Http\Controllers\Controller;
 use App\Wishlist;
 use App\Http\Resources\WishlistResource;
 use App\Http\Resources\WishlistResourceCollection;

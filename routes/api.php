@@ -32,6 +32,8 @@ Route::prefix('v1')->group(function(){
 	Route::apiResource('/post','Api\v1\PostController')->only(['show','destroy','update','store']);
 	Route::apiResource('/comments','Api\v1\CommentController')->only(['index']);
 	Route::apiResource('/comment','Api\v1\CommentController')->only(['show','destroy','update','store']);
+	Route::apiResource('/wishlists','Api\v1\WishlistController')->only(['index']);
+	Route::apiResource('/wishlist','Api\v1\WishlistController')->only(['show','destroy','update','store']);
 });
 
 Route::group(['prefix' => 'auth'], function () {
@@ -42,4 +44,4 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('payload', 'Api\v1\AuthController@payload');
 });
 
-Route::apiResource('/wishlist','WishlistController');
+
