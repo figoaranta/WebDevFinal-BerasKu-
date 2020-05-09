@@ -69,4 +69,21 @@ class AccountController extends Controller
 
     	return response()->json();
     }
+
+    public function resetPassword(Request $request)
+    {
+        $email = $request->email;
+        $password = $request->password;
+        if($password == ''){
+            return response()->json(['Error! Please Input Password']);
+        }
+        $account = Account::where('email',$email)->first();
+        if($account  ==  []){
+            return response()->json(['Error! Account not found']);
+        }
+        $account->update([
+            'password' => bcrypt($password),
+        ]);
+        return $account;
+    }
 }

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::prefix('v1')->group(function(){
+	Route::put('/account/resetPassword','Api\v1\AccountController@resetPassword');
 	Route::apiResource('/account','Api\v1\AccountController')->only(['show','destroy','update','store']);
 	Route::apiResource('/accounts','Api\v1\AccountController')->only(['index']);
 	Route::apiResource('/product','Api\v1\ProductController')->only(['show','destroy','update','store']);
@@ -40,3 +41,4 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('me', 'Api\v1\AuthController@me');
     Route::post('payload', 'Api\v1\AuthController@payload');
 });
+
