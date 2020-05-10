@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::prefix('v1')->group(function(){
+	Route::get('/account/wishlist/{id}','Api\v1\AccountController@showWishlist');
 	Route::put('/account/resetPassword','Api\v1\AccountController@resetPassword');
 	Route::apiResource('/account','Api\v1\AccountController')->only(['show','destroy','update','store']);
 	Route::apiResource('/accounts','Api\v1\AccountController')->only(['index']);
@@ -44,5 +45,5 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('payload', 'Api\v1\AuthController@payload');
 });
 
-Route::get('/account/wishlist/{id}','Api\v1\AccountController@showWishlist');
+
 
