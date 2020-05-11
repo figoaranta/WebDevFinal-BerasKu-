@@ -12,6 +12,12 @@ class AccountController extends Controller
 {
     public function show(Account $account):AccountResource
     {
+        try {
+            $user = auth()->userOrFail();
+        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
+            return response()->json(['error'=> $e->getMessage()]);
+        }
+        
     	return new AccountResource($account);
     }
 
