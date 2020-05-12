@@ -29,17 +29,35 @@ class AccountController extends Controller
     public function store(Request $request)
     {
     	$request->validate([
-    		'firstName' 	=>'required',
-    		'lastName' 		=>'required',
-    		'userName' 		=>'required',
+    		// 'firstName' 	=>'required',
+    		// 'lastName' 		=>'required',
+    		// 'userName' 		=>'required',
             'email'         =>'required',
-    		'NIM' 			=>'required',
-    		'dateOfBirth' 	=>'required',
-            'address'       =>'required',
+    		// 'NIM' 			=>'required',
+    		// 'dateOfBirth' 	=>'required',
+            // 'address'       =>'required',
     		'phoneNumber' 	=>'required',
     		'password' 		=>'required',
     		'userType' 		=>'required',
     	]);
+
+        if($request->userName == null){
+
+            $newUserName =  '';
+
+            if($request->firstName and $request->lastName ){
+                $newUserName = $request->firstName.$request->lastName;
+            }
+            elseif($request->firstName){
+                $newUserName = $newUserName.$request->firstName;
+            }
+            elseif($request->lastName){
+                $newUserName = $newUserName.$request->lastName;
+            }
+
+            $request->userName = $newUserName;
+        }
+
 
     	// $account = Account::create($request->all());
         $account = Account::create([
