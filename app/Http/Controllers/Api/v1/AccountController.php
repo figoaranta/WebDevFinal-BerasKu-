@@ -10,7 +10,7 @@ use App\Wishlist;
 
 class AccountController extends Controller
 {
-    public function show(Account $account):AccountResource
+    public function show(Account $account)
     {
         try {
             $user = auth()->userOrFail();

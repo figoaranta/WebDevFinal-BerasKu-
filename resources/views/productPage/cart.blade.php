@@ -9,16 +9,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<a href="cart">
+  {{$email}}
+	<a href="{{$id}}">
 		<i style="margin-left: 5rem" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
-		<span class="badge">{{Session::has('cart')? Session::get('cart')->totalQuantity :''}}</span>
+		<span class="badge">{{Session::has('cart'.$id)? Session::get('cart'.$id )->totalQuantity :''}}</span>
 	</a>
 	<div class="jumbotron text-center">
 	  <h1>Products</h1>
 	  <p>Welcome to kinoKW</p> 
 	</div>
 
-  	@if(Session::has('cart'))
+  	@if(Session::has('cart'.$id))
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <ul class="list-group">
@@ -32,8 +33,8 @@
                       Action <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a href="productDelete/{{$product['item']['id']}}">Remove by 1</a></li>
-                      <li><a href="productDeleteAll/{{$product['item']['id']}}">Remove All</a></li>
+                      <li><a href="/public/productPage/productDelete/{{$product['item']['id']}}/{{$id}}">Remove by 1</a></li>
+                      <li><a href="/public/productPage/productDeleteAll/{{$product['item']['id']}}/{{$id}}">Remove All</a></li>
                     </ul>
                   </div>
                 </li>
@@ -46,13 +47,13 @@
           <strong>Total : {{$totalPrice}}</strong>
         </div>
         <div class="col-md-6 col-md-offset-3">
-          <a href="products">Back</a>
+          <a href="http://localhost:8080/public/productPage/products?accountId={{$id}}">Back</a>
         </div>
       </div>
       <hr> 
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <button type="button" class="btn btn-success">Checkout</button>
+          <a href="/public/testStripe/checkout"type="button" class="btn btn-success">Checkout</a>
         </div>
       </div>
   	@else
@@ -62,7 +63,7 @@
         </div>
       </div>
       <div class="col-md-6 col-md-offset-3">
-          <a href="products">Back</a>
+          <a href="http://localhost:8080/public/productPage/products?accountId={{$id}}">Back</a>
       </div>
     @endif
 

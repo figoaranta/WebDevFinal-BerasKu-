@@ -9,6 +9,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 // class Account extends Model
 class Account extends Authenticatable implements JWTSubject
 {
+
     protected $fillable = [
         'firstName', 	
 		'lastName', 	
@@ -22,7 +23,7 @@ class Account extends Authenticatable implements JWTSubject
 		'password', 		
 		'userType', 		
     ];
-        public function getJWTIdentifier()
+    public function getJWTIdentifier()
     {
         return $this->getKey();
     }
@@ -35,5 +36,9 @@ class Account extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
     }
 }

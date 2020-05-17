@@ -42,9 +42,9 @@ Route::prefix('/testStripe')->group(function(){
 
 Route::prefix('/productPage')->group(function(){
 	Route::get('/products', 'Api\v1\ProductController@showProductPage');
-	Route::get('/productDelete/{id}', 'Api\v1\ProductController@deleteItem');
-	Route::get('/addProduct/{id}','Api\v1\ProductController@addToCart');
-	Route::get('/cart', 'Api\v1\ProductController@viewCart');
-	Route::get('/productDeleteAll/{id}','Api\v1\ProductController@deleteItemAll');
+	Route::get('/productDelete/{id}/{accountId}', 'Api\v1\ProductController@deleteItem');
+	Route::get('/addProduct/{productId}/{accountId}','Api\v1\ProductController@addToCart');
+	Route::get('/cart/{id}', 'Api\v1\ProductController@viewCart');
+	Route::get('/productDeleteAll/{id}/{accountId}','Api\v1\ProductController@deleteItemAll');
 });
 
