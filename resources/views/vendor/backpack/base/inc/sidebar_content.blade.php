@@ -6,3 +6,4 @@
 <li class='nav-item'><a class='nav-link' href="{{ backpack_url('post') }}"><i class='nav-icon fa fa-question'></i> Posts</a></li>
 <li class='nav-item'><a class='nav-link' href="{{ backpack_url('comment') }}"><i class='nav-icon fa fa-question'></i> Comments</a></li>
 <li class='nav-item'><a class='nav-link' href="{{ backpack_url('wishlist') }}"><i class='nav-icon fa fa-question'></i> Wishlists</a></li>
+<li class='nav-item'><a class='nav-link' href="{{ backpack_url('notification') }}"><i class='nav-icon fa fa-question'></i> Notifications</a></li>
