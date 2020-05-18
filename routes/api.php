@@ -35,6 +35,8 @@ Route::prefix('v1')->group(function(){
 	Route::apiResource('/comment','Api\v1\CommentController')->only(['show','destroy','update','store']);
 	Route::apiResource('/wishlists','Api\v1\WishlistController')->only(['index']);
 	Route::apiResource('/wishlist','Api\v1\WishlistController')->only(['show','destroy','update','store']);
+	Route::apiResource('/notifications','Api\v1\NotificationController')->only(['index']);
+	Route::apiResource('/notification','Api\v1\NotificationController')->only(['show','destroy','update','store']);
 });
 
 Route::group(['prefix' => 'auth'], function () {

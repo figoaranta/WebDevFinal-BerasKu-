@@ -17,9 +17,8 @@ class CreateNotificationsTable extends Migration
             $table->id();
             $table->unsignedInteger('accountId');
             $table->foreign('accountId')->references('id')->on('accounts')->onDelete('cascade');
-            $table->string('notificationStatus');
-            $table->foreign('notificationStatus')->references('notificationStatusType')->on('notificationStatusTypes')->onDelete('cascade');
             $table->string('notificationMessage');
+            $table->boolean('read')->default(false);
             $table->timestamps();
         });
     }
