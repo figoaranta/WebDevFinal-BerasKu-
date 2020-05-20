@@ -16,10 +16,6 @@
         <i style="margin-left: 5rem" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
         <span class="badge">{{Session::has('cart'.$user->id)? Session::get('cart'.$user->id)->totalQuantity :''}}</span>
       </a>
-      <a href="cart/{{$user->id}}">
-        <i style="margin-left: 5rem" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
-        <span class="badge">{{Session::has('cart'.$user->id)? Session::get('cart'.$user->id)->totalQuantity :''}}</span>
-      </a>
       <div class="jumbotron text-center">
         <h1>Products</h1>
         <p>Welcome to kinoKW</p> 
