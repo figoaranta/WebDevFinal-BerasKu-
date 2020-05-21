@@ -61,17 +61,17 @@ class AccountController extends Controller
 
     	// $account = Account::create($request->all());
         $account = Account::create([
-            'firstName'=>$request->firstName,
-            'lastName'=>$request->lastName,
-            'userName'=>$request->userName,
+            'firstname'=>$request->firstName,
+            'lastname'=>$request->lastName,
+            'username'=>$request->userName,
             'email'=>$request->email,
             'NIM'=>$request->NIM,
-            'dateOfBirth'=>$request->dateOfBirth,
+            'dateofbirth'=>$request->dateOfBirth,
             'address'=>$request->address,
             'email'=>$request->email,
-            'phoneNumber'=>$request->phoneNumber,
+            'phonenumber'=>$request->phoneNumber,
             'password'=>bcrypt($request->password),
-            'userType'=>$request->userType
+            'usertype'=>$request->userType
         ]);
 
     	return new AccountResource($account);
