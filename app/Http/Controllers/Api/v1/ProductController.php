@@ -6,6 +6,9 @@ use App\Http\Resources\ProductResourceCollection;
 use App\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Session;
+use App\Cart;
+use App\Account;
 
 class ProductController extends Controller
 {
@@ -46,5 +49,116 @@ class ProductController extends Controller
     	$product->delete();
     	return response()->json();
     }
+
+    public function addToCart(Request $request, $productId,$accountId)
+    {
+        $product = Product::find($productId);
+        $oldCart = Session::has('cart'.$accountId) ? Session::get('cart'.$accountId) :null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $productId);
+        $request->session()->put('cart'.$accountId,$cart);
+        // dd($request->session()->get('cart'));
+        // $cart->deleteAll();
+        // Session::flush();
+        // return redirect('productPage/products');
+        return back();
+        
+    }
+
+    public function showProductPage()
+    {
+        
+        if (isset($_GET['accountId'])) {
+            $user = Account::find($_GET['accountId']);
+        }
+        else{
+            try {
+                $user = auth()->userOrFail();
+            } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
+                // return response()->json(['error'=> $e->getMessage()]);
+                $user = null;
+            }
+        }
+        return view('productPage/product')->with('user',$user);
+    }
+    
+    public function viewCart($id)
+    {
+        $account = Account::find($id);
+        $email = $account->email;
+        if(!Session::has('cart'.$id)){
+            return view('productPage/cart',['email'=>$email,'id'=>$id]);
+        }
+        else{
+            $oldCart = Session::get('cart'.$id);
+            $cart = new Cart($oldCart);
+            return view('productPage/cart',['email'=>$email,'id'=>$id,'products'=>$cart->items,'totalPrice'=>$cart->totalPrice]);
+        }
+        
+    }
+
+    public function deleteItem(Request $request ,$id,$accountId)
+    {
+        
+        $oldCart = Session::has('cart'.$accountId) ? Session::get('cart'.$accountId) :null;
+
+        if($oldCart->totalQuantity == 1){
+            Session::forget('cart'.$accountId);
+            return redirect('productPage/cart/'.$accountId); 
+            
+        }
+
+        if($oldCart->items[$id]['quantity'] == 1){
+            $oldCart->totalQuantity = $oldCart->totalQuantity-1;
+            $oldCart->totalPrice = $oldCart->totalPrice - $oldCart->items[$id]['price'];
+            unset($oldCart->items[$id]);
+            return redirect('productPage/cart/'.$accountId);
+        }
+        $basePrice = $oldCart->items[$id]['price']/$oldCart->items[$id]['quantity'];
+
+        $oldCart->totalQuantity = $oldCart->totalQuantity-1;
+        $oldCart->items[$id]['quantity'] = $oldCart->items[$id]['quantity']-1;
+        $oldCart->items[$id]['price'] = $oldCart->items[$id]['price'] - $basePrice;
+        $oldCart->totalPrice = $oldCart->totalPrice - $basePrice;
+        
+        // $request->session()->put('cart',$oldCart);
+
+        return redirect('productPage/cart/'.$accountId); 
+    }
+
+    public function deleteItemAll(Request $request, $id,$accountId)
+    {
+        $oldCart = Session::has('cart'.$accountId) ? Session::get('cart'.$accountId) :null;
+        $oldCart->totalPrice = $oldCart->totalPrice - $oldCart->items[$id]['price'];
+        $oldCart->totalQuantity = $oldCart->totalQuantity - $oldCart->items[$id]['quantity'];
+        unset($oldCart->items[$id]);
+        if($oldCart->items == null){
+            Session::forget('cart'.$accountId);
+            // Session::flush();
+        }
+        return redirect('productPage/cart/'.$accountId); 
+    }
+
+    
 }
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

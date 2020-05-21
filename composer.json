@@ -11,11 +11,13 @@
         "php": "^7.2.5",
         "backpack/crud": "4.0.*",
         "barryvdh/laravel-elfinder": "^0.4.5",
+        "cartalyst/stripe-laravel": "^12.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
+        "stripe/stripe-php": "^7.31",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {

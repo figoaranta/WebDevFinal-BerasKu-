@@ -72,31 +72,27 @@ integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="ano
                                     </div>
                                 </div> -->
                             </div>
-                            
-                        </div>
-                        <!-- <div class="row row-space">
+                            <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Gender</label>
-                                    <div class="p-t-10">
-                                        <label class="radio-container m-r-45">Male
-                                            <input type="radio" checked="checked" id="gender">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="radio-container">Female
-                                            <input type="radio" name="gender">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
+                                    <label class="label">Username</label>
+                                    <input class="input--style-4" type="text" id="username">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Password</label>
+                                    <input class="input--style-4" type="text" id="password">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Address</label>
-                                    <input class="input--style-4" type="text" name="phone">
+                                    <input class="input--style-4" type="text" id="address">
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
+                        </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -111,20 +107,7 @@ integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="ano
                                 </div>
                             </div>
                         </div>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Username</label>
-                                    <input class="input--style-4" type="text" id="username">
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Password</label>
-                                    <input class="input--style-4" type="text" id="password">
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -132,18 +115,13 @@ integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="ano
                                     <input class="input--style-4" type="text" id="customer">
                                 </div>
                             </div>
-                        </div>
-                        <!-- <div class="input-group">
-                            <label class="label">Customer/Shop</label>
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="subject">
-                                    <option disabled="disabled" selected="selected" id="usertype">Choose option</option>
-                                    <option>Customer</option>
-                                    <option>Shop</option>
-                                </select>
-                                <div class="select-dropdown"></div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Gender Type</label>
+                                    <input class="input--style-4" type="text" id="genderType">
+                                </div>
                             </div>
-                        </div> -->
+                        </div>
                         <div class="p-t-15">
                             <button class="btn btn--radius-2 btn--blue" type="submit" value="submit">Submit</button>
                         </div>
@@ -159,22 +137,26 @@ $('#regis-form').on('submit',function(){
         var namapertama=$("#first_name").val();
         var lastname = $("#last_name").val();
         var username = $("#username").val();
+        var email = $("#email").val();
         var NIK = $("#NIK").val();
         var dateofbirth = $("#dateofbirth").val();
-        var email = $("#email").val();
+        var address = $("#address").val();
         var phonenumber = $("#phone").val();
+        var genderType = $("#genderType").val();
         var password = $("#password").val();
         var usertype = $("#customer").val();
         var dataJson = JSON.stringify({
             "firstName":namapertama,
             "lastName":lastname,
             "userName":username,
+            "email" : email,
             "NIM":NIK,
             "dateOfBirth":dateofbirth,
-            "email":email,
+            "address":address,
             "phoneNumber":phonenumber,
-            "password":password,
-            "userType":usertype
+            "userGenderType" :genderType,
+            "userType":usertype,
+            "password":password
         });
         dataJson = JSON.parse(dataJson);
         document.write(dataJson);

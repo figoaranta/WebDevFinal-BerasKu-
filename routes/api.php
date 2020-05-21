@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::prefix('v1')->group(function(){
+	Route::get('/account/wishlist/{id}','Api\v1\AccountController@showWishlist');
+	Route::put('/account/resetPassword','Api\v1\AccountController@resetPassword');
 	Route::apiResource('/account','Api\v1\AccountController')->only(['show','destroy','update','store']);
 	Route::apiResource('/accounts','Api\v1\AccountController')->only(['index']);
 	Route::apiResource('/product','Api\v1\ProductController')->only(['show','destroy','update','store']);
@@ -31,6 +33,10 @@ Route::prefix('v1')->group(function(){
 	Route::apiResource('/post','Api\v1\PostController')->only(['show','destroy','update','store']);
 	Route::apiResource('/comments','Api\v1\CommentController')->only(['index']);
 	Route::apiResource('/comment','Api\v1\CommentController')->only(['show','destroy','update','store']);
+	Route::apiResource('/wishlists','Api\v1\WishlistController')->only(['index']);
+	Route::apiResource('/wishlist','Api\v1\WishlistController')->only(['show','destroy','update','store']);
+	Route::apiResource('/notifications','Api\v1\NotificationController')->only(['index']);
+	Route::apiResource('/notification','Api\v1\NotificationController')->only(['show','destroy','update','store']);
 });
 
 Route::group(['prefix' => 'auth'], function () {
@@ -40,3 +46,6 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('me', 'Api\v1\AuthController@me');
     Route::post('payload', 'Api\v1\AuthController@payload');
 });
+
+
+

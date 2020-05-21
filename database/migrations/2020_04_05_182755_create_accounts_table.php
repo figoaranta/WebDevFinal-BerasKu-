@@ -15,13 +15,13 @@ class CreateAccountsTable extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->increments('id')->unique();
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->string('userName');
+            $table->string('firstName')->nullable();
+            $table->string('lastName')->nullable();
+            $table->string('userName')->nullable();
             $table->string('email');
-            $table->bigInteger('NIM');
-            $table->string('dateOfBirth');
-            $table->string('address');
+            $table->bigInteger('NIM')->nullable();
+            $table->string('dateOfBirth')->nullable();
+            $table->string('address')->nullable();
             $table->bigInteger('phoneNumber');
             $table->string('userGenderType')->nullable()->index();
             $table->foreign('userGenderType')->references('genderType')->on('userGenderTypes');

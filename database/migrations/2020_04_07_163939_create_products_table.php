@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->foreign('riceColorType')->references('riceColorType')->on('riceColorTypes');
             $table->string('riceTextureType')->index();
             $table->foreign('riceTextureType')->references('riceTextureType')->on('riceTextureTypes');
-            $table->Integer('quantity');
+            $table->Integer('riceQuantity');
             $table->string('riceUnitType')->index();
             $table->foreign('riceUnitType')->references('riceUnitType')->on('riceUnitTypes');
             $table->Integer('price');
