@@ -36,7 +36,7 @@ class AccountController extends Controller
     		// 'NIM' 			=>'required',
     		// 'dateOfBirth' 	=>'required',
             // 'address'       =>'required',
-    		'phoneNumber' 	=>'required',
+    		'phonenumber' 	=>'required',
     		'password' 		=>'required',
     		'userType' 		=>'required',
     	]);
