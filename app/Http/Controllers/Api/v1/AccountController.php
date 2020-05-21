@@ -38,7 +38,7 @@ class AccountController extends Controller
             // 'address'       =>'required',
     		'phonenumber' 	=>'required',
     		'password' 		=>'required',
-    		'userType' 		=>'required',
+    		'usertype' 		=>'required',
     	]);
 
         if($request->userName == null){
