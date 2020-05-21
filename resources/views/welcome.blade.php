@@ -6,7 +6,7 @@
 <body>
     <h1>Welcome To BerasKu</h1>
     <h2>Please login to see greatness</h2>
-    <form action="http://localhost:8080/public/api/auth/login" method="POST">
+    <form action="https://berasku.herokuapp.com/api/auth/login" method="POST">
          <!-- {{ csrf_field() }} -->
     <label >email :</label>
     <input type="text" name="email">
