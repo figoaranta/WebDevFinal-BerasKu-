@@ -160,7 +160,7 @@ $('#regis-form').on('submit',function(){
         });
         dataJson = JSON.parse(dataJson);
         document.write(dataJson);
-        $.post("http://localhost:8080/public/api/v1/account",dataJson);
+        $.post("https://berasku.herokuapp.com/api/v1/account",dataJson);
         
     });
         
