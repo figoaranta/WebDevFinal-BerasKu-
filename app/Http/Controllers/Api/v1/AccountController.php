@@ -65,7 +65,7 @@ class AccountController extends Controller
             'lastname'=>$request->lastName,
             'username'=>$request->userName,
             'email'=>$request->email,
-            'NIM'=>$request->NIM,
+            'nim'=>$request->NIM,
             'dateofbirth'=>$request->dateOfBirth,
             'address'=>$request->address,
             'email'=>$request->email,
