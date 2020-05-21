@@ -36,9 +36,9 @@ class AccountController extends Controller
     		// 'NIM' 			=>'required',
     		// 'dateOfBirth' 	=>'required',
             // 'address'       =>'required',
-    		'phonenumber' 	=>'required',
+    		'phoneNumber' 	=>'required',
     		'password' 		=>'required',
-    		'usertype' 		=>'required',
+    		'userType' 		=>'required',
     	]);
 
         if($request->userName == null){
@@ -61,17 +61,17 @@ class AccountController extends Controller
 
     	// $account = Account::create($request->all());
         $account = Account::create([
-            'firstname'=>$request->firstName,
-            'lastname'=>$request->lastName,
-            'username'=>$request->userName,
+            'firstName'=>$request->firstName,
+            'lastName'=>$request->lastName,
+            'userName'=>$request->userName,
             'email'=>$request->email,
-            'nim'=>$request->NIM,
-            'dateofbirth'=>$request->dateOfBirth,
+            'NIM'=>$request->NIM,
+            'dateOfBirth'=>$request->dateOfBirth,
             'address'=>$request->address,
             'email'=>$request->email,
-            'phonenumber'=>$request->phoneNumber,
+            'phoneNumber'=>$request->phoneNumber,
             'password'=>bcrypt($request->password),
-            'usertype'=>$request->userType
+            'userType'=>$request->userType
         ]);
 
     	return new AccountResource($account);
