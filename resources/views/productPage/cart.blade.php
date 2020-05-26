@@ -53,7 +53,7 @@
       <hr> 
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <a href="/public/testStripe/checkout"type="button" class="btn btn-success">Checkout</a>
+          <a href="/public/testStripe/checkout/{{$id}}"type="button" class="btn btn-success">Checkout</a>
         </div>
       </div>
   	@else

@@ -13,12 +13,12 @@ use Auth;
 
 class CheckoutController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-    	return view('testStripe/checkout');
+    	return view('testStripe/checkout')->with('id',$id);
     }
 
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
     	// dd($request->all());
 
@@ -28,7 +28,7 @@ class CheckoutController extends Controller
         //     return response()->json(['error'=> $e->getMessage()]);
         // }
 
-        $oldCart = Session::get('cart');
+        $oldCart = Session::get('cart1');
         $cart = new Cart($oldCart);
 
     	try {
@@ -60,18 +60,16 @@ class CheckoutController extends Controller
             //     'accountId' => $user->id,       <-- to use this, change column from account_id to accountId
             // ]);
 
-            $user = Account::find(1);
-
+            $user = Account::find($id);
             $order = New Order();
             $order->cart = serialize($cart);
             $order->address = $request->input('address');
             $order->name = $request->input('name');
             $order->paymentId = $customer->id;
-            
 
             $user->orders()->save($order); 
 
-            Session::forget('cart');
+            Session::forget('cart'.$id);
     		return back()->with('message','Thank you! your payment has been successfully accepted!');
     	} catch (\Stripe\Exception\CardException $e) {
     		return back()->withErrors('Error! ' . $e->getMessage());

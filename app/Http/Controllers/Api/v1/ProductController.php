@@ -14,40 +14,40 @@ class ProductController extends Controller
 {
     public function show(Product $product):ProductResource
     {
-    	return new ProductResource($product);
+        return new ProductResource($product);
     }
 
     public function index():ProductResourceCollection
     {
-    	return new ProductResourceCollection(Product::paginate());
+        return new ProductResourceCollection(Product::paginate());
     }
     public function store(Request $request)
     {
-    	$request->validate([
-    		'riceGradeType' 	=> "required",
-	        'riceType' 			=> "required",
-	        'riceShapeType' 	=> "required",
-	        'riceColorType' 	=> "required",
-	        'riceTextureType' 	=> "required",
-	        'quantity' 			=> "required",
-	        'riceUnitType' 		=> "required",
-	        'price' 			=> "required",
-    	]);
+        $request->validate([
+            'riceGradeType'     => "required",
+            'riceType'          => "required",
+            'riceShapeType'     => "required",
+            'riceColorType'     => "required",
+            'riceTextureType'   => "required",
+            'quantity'          => "required",
+            'riceUnitType'      => "required",
+            'price'             => "required",
+        ]);
 
-    	$product = Product::create($request->all());
-    	return new ProductResource($product);
+        $product = Product::create($request->all());
+        return new ProductResource($product);
     }
     public function update(Product $product,Request $request):ProductResource
     {
 
-    	$product->update($request->all()); 
+        $product->update($request->all()); 
 
-    	return new ProductResource($product);
+        return new ProductResource($product);
     }
     public function destroy(Product $product)
     {
-    	$product->delete();
-    	return response()->json();
+        $product->delete();
+        return response()->json([]);
     }
 
     public function addToCart(Request $request, $productId,$accountId)
@@ -61,8 +61,10 @@ class ProductController extends Controller
         // $cart->deleteAll();
         // Session::flush();
         // return redirect('productPage/products');
-        return back();
-        
+        // return back();
+        $cartArray = [];
+        array_push($cartArray, $cart->items,$cart->totalQuantity,$cart->totalPrice);
+        return $cartArray;
     }
 
     public function showProductPage()
@@ -84,27 +86,35 @@ class ProductController extends Controller
     
     public function viewCart($id)
     {
+
         $account = Account::find($id);
         $email = $account->email;
         if(!Session::has('cart'.$id)){
-            return view('productPage/cart',['email'=>$email,'id'=>$id]);
+            return response()->json(["Cart is currently empty"]);
+            // return view('productPage/cart',['email'=>$email,'id'=>$id]);
         }
         else{
             $oldCart = Session::get('cart'.$id);
             $cart = new Cart($oldCart);
-            return view('productPage/cart',['email'=>$email,'id'=>$id,'products'=>$cart->items,'totalPrice'=>$cart->totalPrice]);
+
+            $cartArray = [];
+            array_push($cartArray,$cart->items,$cart->totalQuantity,$cart->totalPrice);
+            return $cartArray;
+
+            // return view('productPage/cart',['email'=>$email,'id'=>$id,'products'=>$cart->items,'totalPrice'=>$cart->totalPrice]);
         }
         
     }
 
-    public function deleteItem(Request $request ,$id,$accountId)
+    public function deleteCartItem(Request $request ,$id,$accountId)
     {
         
         $oldCart = Session::has('cart'.$accountId) ? Session::get('cart'.$accountId) :null;
 
         if($oldCart->totalQuantity == 1){
             Session::forget('cart'.$accountId);
-            return redirect('productPage/cart/'.$accountId); 
+            return response()->json([]);
+            // return redirect('productPage/cart/'.$accountId); 
             
         }
 
@@ -112,7 +122,9 @@ class ProductController extends Controller
             $oldCart->totalQuantity = $oldCart->totalQuantity-1;
             $oldCart->totalPrice = $oldCart->totalPrice - $oldCart->items[$id]['price'];
             unset($oldCart->items[$id]);
-            return redirect('productPage/cart/'.$accountId);
+            $cartArray = [];
+            return response()->json([]);
+            // return redirect('productPage/cart/'.$accountId);
         }
         $basePrice = $oldCart->items[$id]['price']/$oldCart->items[$id]['quantity'];
 
@@ -122,11 +134,11 @@ class ProductController extends Controller
         $oldCart->totalPrice = $oldCart->totalPrice - $basePrice;
         
         // $request->session()->put('cart',$oldCart);
-
-        return redirect('productPage/cart/'.$accountId); 
+        return response()->json([]);
+        // return redirect('productPage/cart/'.$accountId); 
     }
 
-    public function deleteItemAll(Request $request, $id,$accountId)
+    public function deleteCartItemAll(Request $request, $id,$accountId)
     {
         $oldCart = Session::has('cart'.$accountId) ? Session::get('cart'.$accountId) :null;
         $oldCart->totalPrice = $oldCart->totalPrice - $oldCart->items[$id]['price'];
@@ -136,7 +148,8 @@ class ProductController extends Controller
             Session::forget('cart'.$accountId);
             // Session::flush();
         }
-        return redirect('productPage/cart/'.$accountId); 
+        return response()->json([]);
+        // return redirect('productPage/cart/'.$accountId); 
     }
 
     

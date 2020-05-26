@@ -45,7 +45,7 @@
 <body>
 	<a href="cart">
 		<i style="margin-left: 5rem" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
-		<span class="badge">{{Session::has('cart')? Session::get('cart')->totalQuantity :''}}</span>
+		<span class="badge">{{Session::has('cart'.$id)? Session::get('cart'.$id)->totalQuantity :''}}</span>
 	</a>
 	<h1>Checkout</h1>
 	<h2>Product : Beras</h2>
@@ -62,8 +62,7 @@
 	@endif
 
 	<h3>Payment Details</h3>
-	<!-- {{route('checkout.store')}} -->
-	<form action="checkout" method="POST" id="payment-form">
+	<form action="{{$id}}" method="POST" id="payment-form">
 		{{csrf_field()}}
 		<label>Name:</label>
 	    <input type="text" name="name" id="name" >

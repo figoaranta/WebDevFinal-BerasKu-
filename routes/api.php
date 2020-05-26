@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::prefix('v1')->group(function(){
+	Route::delete('/cartDeleteAll/{id}/{accountId}','Api\v1\ProductController@deleteCartItemAll');
+	Route::delete('/cartDelete/{id}/{accountId}', 'Api\v1\ProductController@deleteCartItem');
+	Route::post('/addToCart/{productId}/{accountId}','Api\v1\ProductController@addToCart');
+	Route::get('/cart/{id}', 'Api\v1\ProductController@viewCart');
 	Route::get('/account/wishlist/{id}','Api\v1\AccountController@showWishlist');
 	Route::put('/account/resetPassword','Api\v1\AccountController@resetPassword');
 	Route::apiResource('/account','Api\v1\AccountController')->only(['show','destroy','update','store']);
