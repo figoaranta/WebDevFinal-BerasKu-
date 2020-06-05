@@ -29,7 +29,7 @@ class ProductController extends Controller
             'riceShapeType'     => "required",
             'riceColorType'     => "required",
             'riceTextureType'   => "required",
-            'quantity'          => "required",
+            'riceQuantity'      => "required",
             'riceUnitType'      => "required",
             'price'             => "required",
         ]);

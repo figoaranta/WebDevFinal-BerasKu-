@@ -12,7 +12,7 @@ class Product extends Model
         'riceShapeType',
         'riceColorType',
         'riceTextureType',
-        'quantity',
+        'riceQuantity',
         'riceUnitType',
         'price',
     ];

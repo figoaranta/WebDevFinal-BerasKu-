@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('testFileUpload');
 });
 
 Route::prefix('/accountImageCRUD')->group(function(){
@@ -47,4 +47,11 @@ Route::prefix('/productPage')->group(function(){
 	Route::get('/cart/{id}', 'Api\v1\ProductController@viewCart');
 	Route::get('/productDeleteAll/{id}/{accountId}','Api\v1\ProductController@deleteCartItemAll');
 });
+
+Route::post('upload',function(){
+	request()->file('file')->store(
+		'accountImage',
+		's3'
+	);
+})->name('upload');
 

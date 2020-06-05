@@ -20,24 +20,44 @@ class accountImageController extends Controller
     	// return response()->file((public_path('/sources/images/'.$accountImage->profilePic)));
     }
 
-    public function store(Request $request){
-    	$request->validate([
-    		'id' 			=>'required',
-    		'profilePic' 	=>'required',
-    	]);
+    // public function store(Request $request){
+    // 	$request->validate([
+    // 		'id' 			=>'required',
+    // 		'profilePic' 	=>'required',
+    // 	]);
 
-    	if($request->hasFile('profilePic')){
+    // 	if($request->hasFile('profilePic')){
+    //         $file = $request->file('profilePic');
+    //         $extension = $file->getClientOriginalExtension();
+    //         $filename = time().".".$extension;
+    //         $file->move('sources/images',$filename);
+    //         $photoURL = url('/sources/images/'.$filename);
+    //     }
+    // 	$account = accountImage::create([
+    // 		'id'=>$request->id,
+    // 		'profilePic'=>$filename,
+    // 	]);
+    // 	return response()->json(['Status'=>'Success','URL'=>$photoURL],200);
+    // }
+    
+    public function store(Request $request){
+        $request->validate([
+            'id'            =>'required',
+            'profilePic'    =>'required',
+        ]);
+
+        if($request->hasFile('profilePic')){
             $file = $request->file('profilePic');
             $extension = $file->getClientOriginalExtension();
             $filename = time().".".$extension;
             $file->move('sources/images',$filename);
             $photoURL = url('/sources/images/'.$filename);
         }
-    	$account = accountImage::create([
-    		'id'=>$request->id,
-    		'profilePic'=>$filename,
-    	]);
-    	return response()->json(['Status'=>'Success','URL'=>$photoURL],200);
+        $account = accountImage::create([
+            'id'=>$request->id,
+            'profilePic'=>$filename,
+        ]);
+        return response()->json(['Status'=>'Success','URL'=>$photoURL],200);
     }
     
     public function update(Request $request, AccountImage $accountImage)
