@@ -24,6 +24,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id'                => "required",
             'riceGradeType'     => "required",
             'riceType'          => "required",
             'riceShapeType'     => "required",
