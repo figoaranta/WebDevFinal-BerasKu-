@@ -12,7 +12,7 @@ class accountImageController extends Controller
 {
     public function index():accountImageResourceCollection
     {
-        return new accountImageResourceCollection(accountImage::paginate());
+        return new accountImageResourceCollection(accountImage::all());
     }
 
     public function show(AccountImage $accountImage)
@@ -50,21 +50,25 @@ class accountImageController extends Controller
     
     public function update(Request $request, AccountImage $accountImage)
     {
+        Storage::disk('s3')->delete($accountImage->profilePic);
+
     	if($request->hasFile('profilePic')){
             $file = $request->file('profilePic');
             $extension = $file->getClientOriginalExtension();
             $filename = time().".".$extension;
-            $file->move('sources/images',$filename);
-            $photoURL = url('/sources/images/'.$filename);
+            $filePath = 'accountImage/'.$filename;
+            $path =request()->file('profilePic')->store('accountImage','s3');
         }
         $accountImage->update([
-        	'profilePic' => $filename
+        	'profilePic' => $path
         ]);
-    	return response()->json(['Status'=>'Success','URL'=>$photoURL],200);
+    	return response()->json(['Status'=>'Success','imageURL'=>$path],200);
     }
 
     public function destroy(AccountImage $accountImage)
     {
+        $filePath = $accountImage->profilePic;
+        Storage::disk('s3')->delete($filePath);
     	$accountImage->delete();
     	return response()->json();
     }

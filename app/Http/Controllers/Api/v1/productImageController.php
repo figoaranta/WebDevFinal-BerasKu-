@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\productImage;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductImageResourceCollection;
+use Illuminate\Support\Facades\Storage;
 
 class productImageController extends Controller
 {
@@ -39,16 +40,17 @@ class productImageController extends Controller
     		$file = $request->file('productImage');
     		$extension = $file->getClientOriginalExtension();
     		$filename = time(). '.' . $extension;
-    		$file->move('sources/productImages',$filename);
-            $photoURL = url('/sources/productImages/'.$filename);
+    		// $filePath = 'productImage/'.$filename;
+            Storage::disk('s3')->put($filename, fopen($request->file('productImage'), 'r+'), 'public');
     	}
+            $url = Storage::disk('s3')->url($filename);
 
     	$productImage = productImage::create([
     		'productId'=>$request->productId,
-    		'productImage'=>$filename,
+    		'productImage'=>$url,
     	]);
 
-    	return response()->json(["Status"=>"Success","Path"=>$photoURL],200);
+    	return response()->json(["Status"=>"Success","Path"=>$url],200);
     }
 
     public function update(Request $request, ProductImage $productId)

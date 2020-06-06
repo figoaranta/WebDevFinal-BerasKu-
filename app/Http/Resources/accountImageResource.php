@@ -14,9 +14,9 @@ class accountImageResource extends JsonResource
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
-        return [
-            'profilePic'=> $this->profilePic,
-        ];
+        return parent::toArray($request);
+        // return [
+        //     'profilePic'=> $this->profilePic,
+        // ];
     }
 }
