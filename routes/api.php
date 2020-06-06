@@ -51,5 +51,5 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('payload', 'Api\v1\AuthController@payload');
 });
 
-
+Route::post('upload',"accountImageController@store")->name('upload');
 

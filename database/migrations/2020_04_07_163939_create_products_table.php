@@ -14,7 +14,7 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->char('riceGradeType',1)->index();
             $table->foreign('riceGradeType')->references('riceGradeType')->on('riceGradeTypes');
             $table->string('riceType')->index();
@@ -29,6 +29,7 @@ class CreateProductsTable extends Migration
             $table->string('riceUnitType')->index();
             $table->foreign('riceUnitType')->references('riceUnitType')->on('riceUnitTypes');
             $table->Integer('price');
+            $table->boolean('SOLD')->default(false);
             $table->timestamps();
         });
     }

@@ -48,10 +48,3 @@ Route::prefix('/productPage')->group(function(){
 	Route::get('/productDeleteAll/{id}/{accountId}','Api\v1\ProductController@deleteCartItemAll');
 });
 
-Route::post('upload',function(){
-	request()->file('file')->store(
-		'accountImage',
-		's3'
-	);
-})->name('upload');
-

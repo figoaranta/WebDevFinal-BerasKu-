@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->integer('userId')->unsigned();
             $table->foreign('userId')->references('id')->on('accounts')->onDelete('cascade');
-            $table->integer('productId')->unsigned();
+            $table->bigInteger('productId')->unsigned();
             $table->foreign('productId')->references('id')->on('products')->onDelete('cascade');
             $table->string('postTitle');
             $table->string('postDescription');
