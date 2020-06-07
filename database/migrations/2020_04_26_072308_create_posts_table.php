@@ -21,6 +21,9 @@ class CreatePostsTable extends Migration
             $table->foreign('productId')->references('id')->on('products')->onDelete('cascade');
             $table->string('postTitle');
             $table->string('postDescription');
+            $table->integer("price");
+            $table->integer("countSold");
+            $table->boolean("sold")->default(false);
             $table->timestamps();
         });
     }

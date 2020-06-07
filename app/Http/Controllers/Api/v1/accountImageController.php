@@ -33,7 +33,7 @@ class accountImageController extends Controller
             $extension = $file->getClientOriginalExtension();
             $filename = time().".".$extension;
             $filePath = 'accountImage/'.$filename;
-            // $path =request()->file('profilePic')->store('accountImage','s3');
+            $path =request()->file('profilePic')->store('accountImage','s3');
             // $storage = Storage::disk('s3');
             // $storage->put($filePath,  fopen($file,  'r+'), 'public'); 
         }   

@@ -28,8 +28,6 @@ class CreateProductsTable extends Migration
             $table->Integer('riceQuantity');
             $table->string('riceUnitType')->index();
             $table->foreign('riceUnitType')->references('riceUnitType')->on('riceUnitTypes');
-            $table->Integer('price');
-            $table->boolean('SOLD')->default(false);
             $table->timestamps();
         });
     }
