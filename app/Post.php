@@ -11,5 +11,8 @@ class Post extends Model
     	'productId',
     	'postTitle',
     	'postDescription'
+    	'price',
+    	'countSold',
+    	'sold'
     ];
 }
