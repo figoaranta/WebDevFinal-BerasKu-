@@ -10,7 +10,7 @@ class Post extends Model
 		'userId',
     	'productId',
     	'postTitle',
-    	'postDescription'
+    	'postDescription',
     	'price',
     	'countSold',
     	'sold'
