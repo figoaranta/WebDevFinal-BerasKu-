@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('testFileUpload');
+    return view('welcome');
 });
 
 Route::prefix('/accountImageCRUD')->group(function(){
