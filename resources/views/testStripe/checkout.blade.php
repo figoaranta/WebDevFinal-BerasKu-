@@ -98,7 +98,7 @@
 
     </form>
     <script>
-	    	// Create a Stripe client.
+	// Create a Stripe client.
 	var stripe = Stripe('pk_test_4ONmbYXYxaIsxOLtjJmseNQV004gH0rYRR');
 
 	// Create an instance of Elements.

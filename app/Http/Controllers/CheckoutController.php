@@ -28,7 +28,7 @@ class CheckoutController extends Controller
         //     return response()->json(['error'=> $e->getMessage()]);
         // }
 
-        $oldCart = Session::get('cart1');
+        $oldCart = Session::get('cart'.$id);
         $cart = new Cart($oldCart);
 
     	try {

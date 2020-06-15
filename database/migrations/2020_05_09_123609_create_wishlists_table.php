@@ -16,7 +16,6 @@ class CreateWishlistsTable extends Migration
         Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('postId');
-            $table->foreign('postId')->references('id')->on('posts')->onDelete('cascade');
             $table->UnsignedInteger('accountId');
             $table->foreign('accountId')->references('id')->on('accounts')->onDelete('cascade');
             $table->timestamps();
