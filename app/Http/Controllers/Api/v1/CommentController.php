@@ -10,9 +10,16 @@ use App\Http\Controllers\Controller;
 
 class CommentController extends Controller
 {
-    public function show(Comment $comment):CommentResource
+    public function show($postId)
     {
-    	return new CommentResource($comment);
+        $commentArray = [];
+    	$comments = Comment::all();
+        foreach ($comments as $comment) {
+            if ($comment->postId == $postId) {
+                array_push($commentArray,$comment);
+            }
+        }
+        return $commentArray;
     }
 
     public function index():CommentResourceCollection
@@ -21,13 +28,7 @@ class CommentController extends Controller
     }
 
     public function store(Request $request)
-    {
-        try {
-            $user = auth()->userOrFail();
-        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
-            return response()->json(['error'=> $e->getMessage()]);
-        }
-        
+    {   
     	$request->validate([
     		"postId" => 'required',
     		"commentatorId" => 'required',

@@ -14,9 +14,16 @@ class WishlistController extends Controller
 		return new WishlistResourceCollection(Wishlist::paginate());
 	}
 
-    public function show(Wishlist $wishlist):WishlistResource
+    public function show($accountId)
     {
-    	return new WishlistResource($wishlist);
+        $wishlistArray = [];
+    	$wishlists = Wishlist::all();
+        foreach ($wishlists as $wishlist) {
+            if($wishlist->accountId == $accountId){
+                array_push($wishlistArray,$wishlist);
+            }
+        }
+        return $wishlistArray;
     }
    
     public function store(Request $request)
