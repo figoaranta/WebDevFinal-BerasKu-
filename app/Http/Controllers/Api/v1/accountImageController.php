@@ -18,7 +18,11 @@ class accountImageController extends Controller
     public function show(AccountImage $accountImage)
     {
         // return new accountImageResource($accountImage);
-        return response()->json(["imageURL" => Storage::disk('s3')->url($accountImage->profilePic)]);
+        $url =  Storage::disk('s3')->url($accountImage->profilePic);
+
+        $url = substr($url, 4);
+        $url = "https" . $url;
+        return response()->json(["imageURL" => $url]);
     	// return response()->file((public_path('/sources/images/'.$accountImage->profilePic)));
     }
     
