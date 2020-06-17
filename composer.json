@@ -6,6 +6,10 @@
         "framework",
         "laravel"
     ],
+    "bin": [
+        "bin/heroku-php-apache2",
+        "bin/heroku-php-nginx"
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
