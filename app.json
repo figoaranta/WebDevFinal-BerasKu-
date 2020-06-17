@@ -2,9 +2,31 @@
   "environments": {
     "test": {
       "scripts": {
-        "test-setup": "composer update",
-        "test": "php artisan serve"
+        "test-setup": "heroku-php-apache2 >/dev/null 2>&1 & sleep 5",
+        "test": "codecept run"
       }
     }
   }
 }
+// {
+//   "environments": {
+//     "test": {
+//     	"formation":{
+//     		"test":{
+//     			"quantity":1,
+//     			"size" : "free"
+//     		}
+//     	}
+//     },
+//     "addons":[
+//     ],
+//     "buildpacks":[
+//     ],
+//     "scripts":{
+//     	"test-setup": "composer update",
+//         "test": "php artisan serve"
+//     },
+//     "env":{
+//     }
+//   }
+// }
