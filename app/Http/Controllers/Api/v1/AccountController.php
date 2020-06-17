@@ -33,6 +33,7 @@ class AccountController extends Controller
     		// 'lastName' 		=>'required',
     		// 'userName' 		=>'required',
             'email'         =>'required',
+            'billingNumber' =>'required',
     		// 'NIM' 			=>'required',
     		// 'dateOfBirth' 	=>'required',
             // 'address'       =>'required',
@@ -71,7 +72,8 @@ class AccountController extends Controller
             'email'=>$request->email,
             'phoneNumber'=>$request->phoneNumber,
             'password'=>bcrypt($request->password),
-            'userType'=>$request->userType
+            'userType'=>$request->userType,
+            'billingNumber' =>$request->billingNumber
         ]);
 
     	return new AccountResource($account);

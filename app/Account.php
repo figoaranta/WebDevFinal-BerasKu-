@@ -15,13 +15,14 @@ class Account extends Authenticatable implements JWTSubject
 		'lastName', 	
 		'userName', 
         'email',		
-		'NIM', 			
+		'NIM',
+        'billingNumber', 			
 		'dateOfBirth',
         'address', 		
 		'phoneNumber',
         'userGenderType',
 		'password', 		
-		'userType', 		
+		'userType',
     ];
     public function getJWTIdentifier()
     {

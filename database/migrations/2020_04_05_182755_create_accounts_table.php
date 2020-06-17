@@ -28,6 +28,7 @@ class CreateAccountsTable extends Migration
             $table->string('userType')->index();
             $table->foreign('userType')->references('userTypeName')->on('userTypes');
             $table->string('password');
+            $table->integer('billingNumber');
             $table->timestamps();
             $table->softDeletes();
         });
