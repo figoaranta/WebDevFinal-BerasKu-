@@ -4,6 +4,11 @@
       "addons":[
         "heroku-redis:in-dyno"
       ]
-    }
+    },
+    "buildpacks":[
+    	{
+    		"url":"heroku/php"
+    	}
+    ]
   }
 }
