@@ -1,14 +1,11 @@
 {
   "environments": {
     "test": {
-      "addons":[
-        "heroku-redis:in-dyno"
-      ]
-    },
-    "buildpacks":[
-    	{
-    		"url":"heroku/php"
-    	}
-    ]
+      "env": {
+        "APP_DEBUG": "online",
+        "APP_KEY":"base64:deeU0uhWYUFpdlAtfE9hmf9IDlKCkfWts1yOOok1QKI=",
+        
+      }
+    }
   }
 }
