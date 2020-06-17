@@ -8,25 +8,3 @@
     }
   }
 }
-// {
-//   "environments": {
-//     "test": {
-//     	"formation":{
-//     		"test":{
-//     			"quantity":1,
-//     			"size" : "free"
-//     		}
-//     	}
-//     },
-//     "addons":[
-//     ],
-//     "buildpacks":[
-//     ],
-//     "scripts":{
-//     	"test-setup": "composer update",
-//         "test": "php artisan serve"
-//     },
-//     "env":{
-//     }
-//   }
-// }
