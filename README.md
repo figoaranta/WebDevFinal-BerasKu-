@@ -23,19 +23,19 @@ Once all of the packaged above are installed. Then run open the terminal and run
 
 ## The technologies used in this project
 
-### &nbsp ◉ Laravel - Back-end framework for the MVC architecture design pattern.
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⦿ Laravel - Back-end framework for the MVC architecture design pattern.
 
-###     ◉ React JS - Javascript library for developing the front-end part of the application. https://github.com/marcellhardja/beraskufrontend.
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⦿ React JS - Javascript library for developing the front-end part of the application. https://github.com/marcellhardja/beraskufrontend.
 
-###     ◉ JWT - for sharing security information between server and clients. 
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⦿ JWT - for sharing security information between server and clients. 
 
-###     ◉ CircleCI - To enable continuous integration and development.
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⦿ CircleCI - To enable continuous integration and development.
 
-###     ◉ AWS S3 - for storing image assets (user profile images, product images,etc.)
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⦿ AWS S3 - for storing image assets (user profile images, product images,etc.)
 
-###     ◉ Stripe - To enable payment trasactions for the purchased products.
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⦿ Stripe - To enable payment trasactions for the purchased products.
 
-###     ◉ Heroku - Hosting the web application.
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⦿ Heroku - Hosting the web application.
 
-###     ◉ ClearDB - Database for storing information related to the application.
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⦿ ClearDB - Database for storing information related to the application.
 
