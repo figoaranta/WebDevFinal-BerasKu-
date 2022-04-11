@@ -23,7 +23,7 @@ Once all of the packaged above are installed. Then run open the terminal and run
 
 ## The technologies used in this project
 
-###     ◉ Laravel - Back-end framework for the MVC architecture design pattern.
+### &nbsp ◉ Laravel - Back-end framework for the MVC architecture design pattern.
 
 ###     ◉ React JS - Javascript library for developing the front-end part of the application. https://github.com/marcellhardja/beraskufrontend.
 
