@@ -11,7 +11,7 @@ The prerequisites to run this project (Mac x86):
 
 4. Laravel - https://laravel.com/docs/9.x/installation.
 
-Once all of the packaged above are installed. Then run open the terminal and run the following commands:
+Once all of the packages above are installed. Then run open the terminal and run the following commands:
 
 1. Go to a directory, copy and enter the following: git clone https://github.com/figoaranta/WebDevFinal-BerasKu-
 
